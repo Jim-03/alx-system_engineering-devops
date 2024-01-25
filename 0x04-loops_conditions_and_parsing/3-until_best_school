@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+#Script to print "Best School" * 10 using until
+
+i=0
+
+until (( i >= 10 ));
+do
+	echo "Best School"
+	(( i++ ))
+done
