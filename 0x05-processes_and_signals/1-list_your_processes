@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+#Lists all processes
+
+pstree -A -h
+echo -e
+ps aux
