@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# Displays listening ports
+
+if command -v ss &> /dev/null;
+then
+	SOCKET_CMD="ss -tupln"
+else
+	SOCKET_CMD="netstat -tupl"
+fi
+
+header()
+{
+	echo -e "Proto\tRecv-Q\tSend-Q\tLocal Address\t\tForeign Address\t\tState\tPID/Program name"
+}
+
+echo "Active Internet connections (only servers)"
+header
+
+$SOCKET_CMD | awk '/LISTEN/ { printf "%s\t%s\t%s\t%-23s\t%-23s\t%-10s\t%s/%s\n", $1, $2, $3, $4, $5, $6, $7, $NF }'
+
+echo -e "\nActive UNIX domain sockets (only servers)"
+
+if [ "$SOCKET_CMD" == "ss -tupln" ];
+then
+	header
+	$SOCKET_CMD | awk '/^unix / { printf "%s\t%s\t%s\t%-23s\t%-23s\t%-10s\t%s/%s\n", $1, $2, $3, $4, $5, $6, $7, $NF }'
+fi
