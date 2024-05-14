@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+#Installs nginx and creates a file containing string "Hello World!"
+
+sudo apt update
+sudo apt install nginx
+sudo ufw 'Nginx HTTP'
+echo "Hello World!" | sudo tee /var/www/html/index.html
+sudo nginx -t
+sudo system nginx restart
+sudo system nginx reload
