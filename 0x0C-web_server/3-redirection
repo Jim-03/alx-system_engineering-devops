@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Redirects a user to my github repo with code 301
+
+# Update packages
+sudo apt update
+
+# Install nginx
+sudo apt intall -y nginx
+
+echo "Hello World!" | sudo tee /var/www/html/index.html
+
+string="server_name _;\n\trewrite ^\/redirect_me https:\/\/github.com\/Jim-03 permanent;"
+sudo sed -i "s/server_name _;/$string/" /etc/nginx/sites-enabled/default
+
+sudo service nginx reload
