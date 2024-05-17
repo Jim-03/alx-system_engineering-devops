@@ -5,7 +5,7 @@
 sudo apt update
 
 # Install nginx
-sudo apt intall -y nginx
+sudo apt install -y nginx
 
 echo "Hello World!" | sudo tee /var/www/html/index.html
 
