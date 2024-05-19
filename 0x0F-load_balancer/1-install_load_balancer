@@ -5,7 +5,7 @@
 sudo apt update
 
 # Install balancing server
-sudo apt install haproxy
+sudo apt install -y haproxy
 
 # Define the HAProxy configuration
 server_config="
