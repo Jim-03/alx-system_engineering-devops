@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+# Sets up a machine for load balancing
+
+# Update packages
+sudo apt update
+
+# Install balancing server
+sudo apt install haproxy
+
+# Define the HAProxy configuration
+server_config="
+frontend jims_frontend
+        bind *:80
+        mode http
+        default_backend jims_backend
+        timeout client 30s
+
+backend jims_backend
+        mode http
+        balance roundrobin
+        timeout connect 5s
+        timeout server 30s
+        server 527734-web-01 54.82.207.91:80 check
+        server 527734-web-02 52.3.246.175:80 check
+"
+
+# Write the configuration to the HAProxy configuration file
+echo "$server_config" | sudo tee /etc/haproxy/haproxy.cfg > /dev/null
+
+# Enable HAProxy to start on boot
+echo "ENABLED=1" | sudo tee -a /etc/default/haproxy > /dev/null
+
+# Check the HAProxy configuration for syntax errors
+sudo haproxy -c -f /etc/haproxy/haproxy.cfg
+
+# Restart HAProxy to apply the new configuration
+sudo service haproxy restart
