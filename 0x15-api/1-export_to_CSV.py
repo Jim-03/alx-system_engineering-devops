@@ -1,7 +1,11 @@
 #!/usr/bin/python3
 import sys
 import requests
-""" Module to return information from an api."""
+import csv
+"""
+Module to return information from an api.
+Creates a csv file.
+"""
 
 
 if __name__ == "__main__":
@@ -27,8 +31,15 @@ if __name__ == "__main__":
     for task in todo_data:
         if task['completed']:
             completed_tasks += 1
-    print(f"Employee {employee_name} is done with tasks
+    print(f"Employee {employee_name} is done with tasks\
           ({completed_tasks}/{len(todo_data)}): ")
     for task in todo_data:
         if task['completed']:
             print(f"\t {task['title']}")
+
+    # Create the csv
+    with open(f"{employee_id}.csv", mode='w', newline='')as file:
+        writer = csv.writer(file, quoting=csv.QUOTE_ALL)
+        for task in todo_data:
+            writer.writerow([employee_id, employee_name,
+                            task['completed'], task['title']])
