@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import sys
 import requests
-""" Module to return information from an api."""
+""" Module to return information from an api"""
 
 
 if __name__ == "__main__":
