@@ -1,11 +1,11 @@
-#!/usr/bin/python3
-import sys
-import requests
-import csv
 """
 Module to return information from an api.
 Creates a csv file.
 """
+#!/usr/bin/python3
+import sys
+import requests
+import csv
 
 
 if __name__ == "__main__":
