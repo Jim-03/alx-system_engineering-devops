@@ -4,8 +4,8 @@ Module to return information from an api
 Accepts an integer value which is the employee's id
 Uses the ID to fetch their todo progress.
 """
-import sys
 import requests
+import sys
 
 
 if __name__ == "__main__":
@@ -27,12 +27,15 @@ if __name__ == "__main__":
     # COnvert the todo to json
     todo_data = todo.json()
     # Find the tasks completed
+    total = 0
     completed_tasks = 0
     for task in todo_data:
+        if task.get(f'{employee_id}') == employee_id:
+            total += 1
         if task['completed']:
             completed_tasks += 1
     print(f"Employee {employee_name} is done with tasks", end='')
-    print(f"({completed_tasks}/{len(todo_data)}): ")
+    print(f"({completed_tasks}/{total}): ")
     for task in todo_data:
         if task['completed']:
             print(f"\t {task['title']}")
