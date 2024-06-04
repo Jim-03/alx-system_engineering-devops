@@ -1,5 +1,9 @@
-""" Module to return information from an api"""
-# !/usr/bin/python3
+#!/usr/bin/python3
+"""
+Module to return information from an api
+Accepts an integer value which is the employee's id
+Uses the ID to fetch their todo progress.
+"""
 import sys
 import requests
 
