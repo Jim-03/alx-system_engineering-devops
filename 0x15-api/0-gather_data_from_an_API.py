@@ -27,15 +27,13 @@ if __name__ == "__main__":
     # COnvert the todo to json
     todo_data = todo.json()
     # Find the tasks completed
-    total = 0
-    completed_tasks = 0
+    total = len(todo_data)
+    completed_tasks = []
     for task in todo_data:
-        if task.get(f'{employee_id}') == employee_id:
-            total += 1
         if task['completed']:
-            completed_tasks += 1
+            completed_tasks.append(task)
     print(f"Employee {employee_name} is done with tasks", end='')
-    print(f"({completed_tasks}/{total}): ")
+    print(f"({len(completed_tasks)}/{total}): ")
     for task in todo_data:
         if task['completed']:
             print(f"\t {task['title']}")
