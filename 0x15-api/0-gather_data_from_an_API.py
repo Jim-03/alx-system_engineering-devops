@@ -1,7 +1,7 @@
-#!/usr/bin/python3
+""" Module to return information from an api"""
+# !/usr/bin/python3
 import sys
 import requests
-""" Module to return information from an api"""
 
 
 if __name__ == "__main__":
@@ -27,8 +27,8 @@ if __name__ == "__main__":
     for task in todo_data:
         if task['completed']:
             completed_tasks += 1
-    print(f"Employee {employee_name} is done with tasks
-          ({completed_tasks}/{len(todo_data)}): ")
+    print(f"Employee {employee_name} is done with tasks", end='')
+    print(f"({completed_tasks}/{len(todo_data)}): ")
     for task in todo_data:
         if task['completed']:
             print(f"\t {task['title']}")
