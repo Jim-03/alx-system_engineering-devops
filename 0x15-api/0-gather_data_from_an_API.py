@@ -32,8 +32,8 @@ if __name__ == "__main__":
     for task in todo_data:
         if task['completed']:
             completed_tasks.append(task)
-    print(f"Employee {employee_name} is done with tasks", end='')
-    print(f"({len(completed_tasks)}/{total}): ")
+    print(f"Employee {employee_name} is done with tasks ", end='')
+    print(f"({len(completed_tasks)}/{total}):")
     for task in todo_data:
         if task['completed']:
             print(f"\t {task['title']}")

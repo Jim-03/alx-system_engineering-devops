@@ -1,11 +1,13 @@
 #!/usr/bin/python3
 """
-Module to return information from an api.
-Creates a csv file.
+Module to return information from an api
+Accepts an integer value which is the employee's id
+Uses the ID to fetch their todo progress
+Exports the data to a csv.
 """
-import sys
-import requests
 import csv
+import requests
+import sys
 
 
 if __name__ == "__main__":
@@ -27,12 +29,13 @@ if __name__ == "__main__":
     # COnvert the todo to json
     todo_data = todo.json()
     # Find the tasks completed
-    completed_tasks = 0
+    total = len(todo_data)
+    completed_tasks = []
     for task in todo_data:
         if task['completed']:
-            completed_tasks += 1
-    print(f"Employee {employee_name} is done with tasks
-          ({completed_tasks}/{len(todo_data)}): ")
+            completed_tasks.append(task)
+    print(f"Employee {employee_name} is done with tasks ", end='')
+    print(f"({len(completed_tasks)}/{total}): ")
     for task in todo_data:
         if task['completed']:
             print(f"\t {task['title']}")
