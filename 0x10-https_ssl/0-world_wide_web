@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+#Displays information about subdomains
+
+get_subdomain_info() {
+    local domain="$1"
+    local subdomain="$2"
+    
+    result=$(dig +short "$subdomain.$domain" | awk 'NR==1{print}')
+    record_type=$(dig "$subdomain.$domain" | awk '/ANSWER SECTION:/ {getline; print $4}')
+    
+    echo "The subdomain $subdomain is a $record_type record and points to $result"
+}
+
+if [ $# -eq 1 ]; then
+    domain="$1"
+    for sub in www lb-01 web-01 web-02; do
+        get_subdomain_info "$domain" "$sub"
+    done
+elif [ $# -eq 2 ]; then
+    domain="$1"
+    subdomain="$2"
+    get_subdomain_info "$domain" "$subdomain"
+fi
