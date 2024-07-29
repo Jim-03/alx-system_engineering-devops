@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
 Module to return information from an api
-Accepts an integer value which is the employee's id
+Accepts an integer value as the employee's id
 Uses the ID to fetch their todo progress.
 """
 import requests
